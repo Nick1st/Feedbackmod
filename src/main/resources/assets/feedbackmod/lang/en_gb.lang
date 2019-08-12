@@ -1,0 +1,10 @@
+#Tabs
+itemGroup.block_tab=Feedback Mod Blocks
+itemGroup.item_tab=Feedback Mod Items
+
+#Items
+item.moon_mosaic.name=Moon Mosaic
+
+#Blocks
+tile.colored_wood.name=Coloured wood
+tile.colored_wood_white.name=White wood

@@ -1,0 +1,10 @@
+#Tabs
+itemGroup.block_tab=Feedback Mod Blöcke
+itemGroup.item_tab=Feedback Mod Gegenstände
+
+#Items
+item.moon_mosaic.name=Mondstein
+
+#Blocks
+tile.colored_wood.name=Gefärbtes Holz
+tile.colored_wood_white.name=Weißes Holz
