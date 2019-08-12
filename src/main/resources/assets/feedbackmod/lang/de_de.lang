@@ -7,4 +7,19 @@ item.moon_mosaic.name=Mondstein
 
 #Blocks
 tile.colored_wood.name=Gefärbtes Holz
-tile.colored_wood_white.name=Weißes Holz
+tile.white_colored_wood.name=Weißes Holz
+tile.orange_colored_wood.name=Oranges Holz
+tile.magenta_colored_wood.name=Magenta farbiges Holz
+tile.light_blue_colored_wood.name=Hellblaues Holz
+tile.yellow_colored_wood.name=Gelbes Holz
+tile.lime_colored_wood.name=Hellgrünes Holz
+tile.pink_colored_wood.name=Rosarotes Holz
+tile.gray_colored_wood.name=Graues Holz
+tile.light_gray_colored_wood.name=Hellgraues Holz
+tile.cyan_colored_wood.name=Türkises Holz
+tile.purple_colored_wood.name=Violettes Holz
+tile.blue_colored_wood.name=Blaues Holz
+tile.brown_colored_wood.name=Braunes Holz
+tile.green_colored_wood.name=Grünes Holz
+tile.red_colored_wood.name=Rotes Holz
+tile.black_colored_wood.name=Schwarzes Holz
