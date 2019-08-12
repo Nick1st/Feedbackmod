@@ -1,0 +1,5 @@
+{"parent": "block/cube_all",
+    "textures": {
+        "all": "feedbackmod:blocks/lime_colored_wood"
+    }
+}

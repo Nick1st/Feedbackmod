@@ -7,7 +7,7 @@ item.moon_mosaic.name=Moon Mosaic
 
 #Blocks
 tile.colored_wood.name=Colored wood
-tile.colored_wood_white.name=White wood
+tile.white_colored_wood.name=White wood
 tile.orange_colored_wood.name=Orange wood
 tile.magenta_colored_wood.name=Magenta wood
 tile.light_blue_colored_wood.name=Light blue wood

@@ -1,0 +1,5 @@
+{"parent": "block/cube_all",
+    "textures": {
+        "all": "feedbackmod:blocks/gray_colored_wood"
+    }
+}
