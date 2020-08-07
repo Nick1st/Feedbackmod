@@ -58,6 +58,7 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void registerItemModels() {
+		//Will get removed in next update (UNUSED) 
 	}
 	//
 }
