@@ -1,0 +1,20 @@
+#Tabs
+itemGroup.packutil=PackUtil
+
+#Blocks
+white_colored_wood.name=Weiß gefärbtes Holz
+orange_colored_wood.name=Orange gefärbtes Holz
+magenta_colored_wood.name=Magenta gefärbtes Holz
+light_blue_colored_wood.name=Hellblau gefärbtes Holz
+yellow_colored_wood.name=Gelb gefärbtes Holz
+lime_colored_wood.name=Hellgrün gefärbtes Holz
+pink_colored_wood.name=Rosa gefärbtes Holz
+grey_colored_wood.name=Grau gefärbtes Holz
+light_grey_colored_wood.name=Hellgrau gefärbtes Holz
+cyan_colored_wood.name=Türkis gefärbtes Holz
+purple_colored_wood.name=Violett gefärbtes Holz
+blue_colored_wood.name=Blau gefärbtes Holz
+brown_colored_wood.name=Braun gefärbtes Holz
+green_colored_wood.name=Grün gefärbtes Holz
+red_colored_wood.name=Rot gefärbtes Holz
+black_colored_wood.name=Schwarz gefärbtes Holz

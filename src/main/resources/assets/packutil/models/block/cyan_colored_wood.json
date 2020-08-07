@@ -1,0 +1,5 @@
+{"parent": "block/cube_all",
+    "textures": {
+        "all": "packutil:blocks/cyan_colored_wood"
+    }
+}

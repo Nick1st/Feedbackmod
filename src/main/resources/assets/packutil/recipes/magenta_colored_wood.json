@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wood",
+  "ingredients": [
+    {
+      "item": "minecraft:dye",
+      "data": 13
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "plankWood"
+    }
+  ],
+  "result": {
+    "item": "packutil:colored_wood",
+    "data": 2
+  }
+}

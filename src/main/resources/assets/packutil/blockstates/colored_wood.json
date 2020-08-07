@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "variant=black": { "model": "packutil:black_colored_wood" },
+        "variant=blue": { "model": "packutil:blue_colored_wood" },
+        "variant=brown": { "model": "packutil:brown_colored_wood" },
+        "variant=cyan": { "model": "packutil:cyan_colored_wood" },
+        "variant=grey": { "model": "packutil:grey_colored_wood" },
+        "variant=green": { "model": "packutil:green_colored_wood" },
+        "variant=light_blue": { "model": "packutil:light_blue_colored_wood" },
+        "variant=light_grey": { "model": "packutil:light_grey_colored_wood" },
+        "variant=lime": { "model": "packutil:lime_colored_wood" },
+        "variant=magenta": { "model": "packutil:magenta_colored_wood" },
+        "variant=orange": { "model": "packutil:orange_colored_wood" },
+        "variant=pink": { "model": "packutil:pink_colored_wood" },
+        "variant=purple": { "model": "packutil:purple_colored_wood" },
+        "variant=red": { "model": "packutil:red_colored_wood" },
+        "variant=white": { "model": "packutil:white_colored_wood" },
+        "variant=yellow": { "model": "packutil:yellow_colored_wood" }
+    }
+}
