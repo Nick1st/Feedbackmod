@@ -48,7 +48,7 @@ public class BlockColoredWood extends Block {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(VARIANT, ColoredWoodType.VALUES[meta]);
+		return this.getDefaultState().withProperty(VARIANT, ColoredWoodType.BLOCK_VALUES[meta]);
 	}
 
 	@Override

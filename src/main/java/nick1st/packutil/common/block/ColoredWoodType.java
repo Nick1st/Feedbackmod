@@ -22,13 +22,13 @@ public enum ColoredWoodType implements IStringSerializable {
 	RED("red_colored_wood.png"),
 	BLACK("black_colored_wood.png");
 
-	public static final ColoredWoodType VALUES[] = values();
+	public static final ColoredWoodType BLOCK_VALUES[] = values();
 	public final ResourceLocation texture;
-	public final String name;
+	public final String block_name;
 	private String breakTexture;
 
 	ColoredWoodType(String texture) {
-		this.name = this.name().toLowerCase();
+		this.block_name = this.name().toLowerCase();
 		this.texture = new ResourceLocation("packutil", "textures/blocks/" + texture);
 	}
 
@@ -41,7 +41,7 @@ public enum ColoredWoodType implements IStringSerializable {
 
 	@Override
 	public String getName() {
-		return this.name;
+		return this.block_name;
 	}
 
 	MapColor getMapColor() {

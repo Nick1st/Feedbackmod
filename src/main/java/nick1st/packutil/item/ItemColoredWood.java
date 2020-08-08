@@ -23,8 +23,8 @@ public class ItemColoredWood extends ItemBlock {
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
 		int meta = itemstack.getMetadata();
-		if (meta < ColoredWoodType.VALUES.length) {
-			return ColoredWoodType.VALUES[itemstack.getMetadata()].name().toLowerCase() + "_colored_wood";
+		if (meta < ColoredWoodType.BLOCK_VALUES.length) {
+			return ColoredWoodType.BLOCK_VALUES[itemstack.getMetadata()].name().toLowerCase() + "_colored_wood";
 		} else {
 			return super.getUnlocalizedName(itemstack);
 		}
