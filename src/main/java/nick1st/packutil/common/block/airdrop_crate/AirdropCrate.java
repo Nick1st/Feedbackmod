@@ -115,7 +115,7 @@ public class AirdropCrate extends Block {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
 		TileEntity te = worldIn.getTileEntity(pos);
 		if (te == null || !(te instanceof TileEntityAirdropCrate)) {
-			return true;
+			return false;
 		}
 		if (worldIn.isRemote) {
 			System.out.println("Returned by isRemote");

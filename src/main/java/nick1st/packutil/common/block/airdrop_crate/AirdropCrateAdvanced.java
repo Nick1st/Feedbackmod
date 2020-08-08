@@ -183,7 +183,7 @@ public class AirdropCrateAdvanced extends AirdropCrate {
 			}
 		}
 		if (te == null || !(te instanceof TileEntityAirdropCrate)) {
-			return true;
+			return false;
 		}
 		if (!worldIn.isRemote) {
 			if (te instanceof TileEntityAirdropCrate) {

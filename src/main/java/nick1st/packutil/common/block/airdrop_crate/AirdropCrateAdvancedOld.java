@@ -114,7 +114,7 @@ public class AirdropCrateAdvancedOld extends Block {
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing heldItem, float side, float hitX, float hitY) {
 		TileEntity te = worldIn.getTileEntity(pos);
 		if (te == null || !(te instanceof TileEntityAirdropCrate)) {
-			return true;
+			return false;
 		}
 		if (worldIn.getBlockState(pos.up()).doesSideBlockChestOpening(worldIn, pos.up(), EnumFacing.DOWN)) {
 			return true;
