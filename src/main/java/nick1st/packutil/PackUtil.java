@@ -89,6 +89,7 @@ public class PackUtil {
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
+		//Unused at the moment
 	}
 
 	private static ResourceLocation getEntityResource(String entityName) {

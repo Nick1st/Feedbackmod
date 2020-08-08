@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class CommonProxy implements IGuiHandler {
 	public void preInit() {
+		//Required for ClientProx to override
 	}
 
 	@Override
@@ -45,12 +46,15 @@ public class CommonProxy implements IGuiHandler {
 
 	//
 	public void registerRenderers() {
+		//Required for ClientProx to override
 	}
 
 	public void registerGui() {
+		//Required for ClientProx to override
 	}
 
 	public void registerItemModels() {
+		//Unused: Moved to ModItems/PackUtilBlocks class
 	}
 	//
 }

@@ -49,6 +49,7 @@ public class TileEntityAirdropCrate extends TileEntityLockableLoot implements IT
 	private EnumFacing facing;
 	public boolean inventoryTouched;
 	private String customName;
+	private final String CustomNameStr = "CustomName";
 
 	//
 	private List<TileEntityAirdropCrate.BeamSegment> beamSegments = Lists.newArrayList();
@@ -139,8 +140,8 @@ public class TileEntityAirdropCrate extends TileEntityLockableLoot implements IT
 		super.readFromNBT(compound);
 
 		this.cratecontent = NonNullList.<ItemStack>withSize(getSizeInventory(), ItemStack.EMPTY);
-		if (compound.hasKey("CustomName", Constants.NBT.TAG_STRING)) {
-			this.customName = compound.getString("CustomName");
+		if (compound.hasKey(CustomNameStr, Constants.NBT.TAG_STRING)) {
+			this.customName = compound.getString(CustomNameStr);
 		}
 		if (!this.checkLootAndRead(compound)) {
 			ItemStackHelper.loadAllItems(compound, cratecontent);
@@ -158,7 +159,7 @@ public class TileEntityAirdropCrate extends TileEntityLockableLoot implements IT
 			ItemStackHelper.saveAllItems(compound, this.cratecontent);
 		}
 		if (this.hasCustomName()) {
-			compound.setString("CustomName", this.customName);
+			compound.setString(CustomNameStr, this.customName);
 		}
 		compound.setShort("Team", this.teamUID);
 		compound.setInteger("Red", this.red);

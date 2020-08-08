@@ -57,5 +57,6 @@ public class GUIHandler implements IGuiHandler {
 	}
 
 	public static void registerGuis() {
+		//Unused
 	}
 }

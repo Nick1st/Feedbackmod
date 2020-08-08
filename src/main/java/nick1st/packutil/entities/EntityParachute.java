@@ -84,10 +84,12 @@ public class EntityParachute extends EntityThrowable implements IEntityAdditiona
 
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
+		//Forced by extending the EntityThrowable class
 	}
 
 	@Override
 	public void readSpawnData(ByteBuf buffer) {
+		//Forced by extending the EntityThrowable class
 	}
 
 	@Override

@@ -562,8 +562,8 @@ public class ModelParachuteEntity extends ModelBase {
 		string8.setTextureOffset(50, 61).addBox(-1.0F, -23.0F, 0.0F, 1, 23, 0, false);
 	}
 
-	public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-	}
+	//public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	//}
 
 	public void render() {
 		crate.render(0.0625F);
