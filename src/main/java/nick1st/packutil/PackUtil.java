@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import nick1st.packutil.common.CommonProxy;
 import nick1st.packutil.common.block.airdrop_crate.GUIHandler;
 import nick1st.packutil.common.config.Config;
@@ -25,6 +26,7 @@ import nick1st.packutil.common.core.ModBlocks;
 import nick1st.packutil.common.core.ModItems;
 import nick1st.packutil.common.core.PackUtilBlocks;
 import nick1st.packutil.common.integration.ftbquests.PackUtilIntegration;
+import nick1st.packutil.common.network.MessageBeamColorSync;
 import nick1st.packutil.common.tileentity.TileEntityHandler;
 import nick1st.packutil.entities.EntityParachute;
 
@@ -49,7 +51,7 @@ public class PackUtil {
 		return INSTANCE;
 	}
 
-	public static CreativeTabs TAB = new CreativeTabs("packutil") {
+	public static CreativeTabs TAB = new CreativeTabs("packutiltab") {
 		public ItemStack getTabIconItem() {
 			return new ItemStack(Blocks.TNT);
 		}
@@ -76,9 +78,11 @@ public class PackUtil {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
+		int messageId = 0;
+		PACKET_HANDLER.registerMessage(MessageBeamColorSync.Handler.class, MessageBeamColorSync.class, messageId++, Side.CLIENT);
 		MinecraftForge.EVENT_BUS.register(PackUtilBlocks.class);
 		MinecraftForge.EVENT_BUS.register(ModItems.class);
-		EntityRegistry.registerModEntity(new ResourceLocation("packutil", "parachute_drop"), EntityParachute.class, "parachute_drop", 1, PackUtil.INSTANCE, 120, 1, true);
+		EntityRegistry.registerModEntity(new ResourceLocation(PackUtil.MOD_ID, "parachute_drop"), EntityParachute.class, "parachute_drop", 1, PackUtil.INSTANCE, 120, 1, true);
 		TileEntityHandler.registerTileEntities();
 		RegisterOreDict.registerOreDict();
 	}
@@ -88,6 +92,6 @@ public class PackUtil {
 	}
 
 	private static ResourceLocation getEntityResource(String entityName) {
-		return new ResourceLocation("packutil", entityName);
+		return new ResourceLocation(PackUtil.MOD_ID, entityName);
 	}
 }

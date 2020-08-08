@@ -20,7 +20,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import nick1st.packutil.PackUtil;
+import nick1st.packutil.common.network.MessageBeamColorSync;
 import nick1st.packutil.common.tileentity.TileEntityAirdropCrate;
 
 public class AirdropCrateAdvanced extends AirdropCrate {
@@ -29,18 +31,32 @@ public class AirdropCrateAdvanced extends AirdropCrate {
 	public Universe universe;
 	public static ForgeTeam t;
 	private int update = 0;
+	public float[] colors = {1.0F, 1.0F, 1.0F};
+	public TileEntityAirdropCrate teac;
 
 	private TileEntityAirdropCrate getTE(World world, BlockPos pos) {
 		return (TileEntityAirdropCrate) world.getTileEntity(pos);
 	}
 
+	protected void sendColorPacket(TileEntityAirdropCrate tile) {
+		PackUtil.PACKET_HANDLER.sendToAllAround(new MessageBeamColorSync(tile, this.colors), new TargetPoint(tile.getWorld().provider.getDimension(), tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 128));
+	}
+
+	public void receiveMessageFromServer(float[] colors) {
+		System.out.println("receiveMessageFromServer() called");
+		this.colors = colors;
+	}
+
 	public float[] getBeamColor(World worldIn, BlockPos pos) {
+		//System.out.println(pos.getX() + "|" + pos.getY() + "|" + pos.getZ());
 		if (worldIn.isRemote) {
-			float[] colors = {1.0F, 1.0F, 1.0F};
-			return colors;
+			//System.out.println(pos.getX() + "; " + this.colors[0] + "|" + pos.getY() + "; " + this.colors[1] + "|"
+			//		+ pos.getZ() + "; " + this.colors[2]);
+			//float[] colors = {1.0F, 1.0F, 1.0F};
+			return this.colors;
 		}
-		TileEntity te = worldIn.getTileEntity(pos);
 		universe = Universe.get();
+		TileEntity te = worldIn.getTileEntity(pos);
 		try {
 			//System.out.println(universe.getTeam(((TileEntityAirdropCrate) te).getTeamUID(te)));
 			t = universe.getTeam(((TileEntityAirdropCrate) te).getTeamUID(te));
@@ -49,65 +65,81 @@ public class AirdropCrateAdvanced extends AirdropCrate {
 		}
 		//ForgeTeam t = universe.getTeam(((TileEntityAirdropCrate) te).getTeamUID(te).toString());
 		if (te instanceof TileEntityAirdropCrate) {
-			TileEntityAirdropCrate teac = ((TileEntityAirdropCrate) te);
-			if (t.type == TeamType.NONE && teac.red == 0 && teac.green == 0 && teac.blue == 0) {
+			teac = ((TileEntityAirdropCrate) te);
+			if (t.type == TeamType.NONE && this.teac.red == 0 && this.teac.green == 0 && this.teac.blue == 0) {
 				update++;
 				if (update <= 40) {
-					float[] colors = {0.855F, 0.647F, 0.125F};
-					return colors;
+					this.colors[0] = 0.855F;
+					this.colors[1] = 0.647F;
+					this.colors[2] = 0.125F;
 				} else {
-					float[] colors = {1.0F, 1.0F, 1.0F};
+					this.colors[0] = 1.0F;
+					this.colors[1] = 1.0F;
+					this.colors[2] = 1.0F;
 					if (update == 80) {
 						update = 0;
 					}
-					return colors;
 				}
-			} else if (teac.red != 0 || teac.green != 0 || teac.blue != 0) {
+				sendColorPacket(this.teac);
+				return this.colors;
+			} else if (this.teac.red != 0 || this.teac.green != 0 || this.teac.blue != 0) {
 				if (t.type == TeamType.NONE) {
-					float[] colors = {teac.red / 255F, teac.green / 255F, teac.blue / 255F};
-					return colors;
+					this.colors[0] = this.teac.red / 255F;
+					this.colors[1] = this.teac.green / 255F;
+					this.colors[2] = this.teac.blue / 255F;
+					sendColorPacket(this.teac);
+					return this.colors;
 				}
 			}
 			if (t.getColor() == EnumTeamColor.BLUE) {
-				float[] colors = {0.0F, 0.58F, 1.0F};
-				return colors;
+				this.colors[0] = 0.0F;
+				this.colors[1] = 0.58F;
+				this.colors[2] = 1.0F;
 			} else if (t.getColor() == EnumTeamColor.CYAN) {
-				float[] colors = {0.0F, 0.867F, 1.0F};
-				return colors;
+				this.colors[0] = 0.0F;
+				this.colors[1] = 0.867F;
+				this.colors[2] = 1.0F;
 			} else if (t.getColor() == EnumTeamColor.GREEN) {
-				float[] colors = {0.137F, 0.867F, 0.298F};
-				return colors;
+				this.colors[0] = 0.137F;
+				this.colors[1] = 0.867F;
+				this.colors[2] = 0.298F;
 			} else if (t.getColor() == EnumTeamColor.YELLOW) {
-				float[] colors = {1.0F, 0.816F, 0.0F};
-				return colors;
+				this.colors[0] = 1.0F;
+				this.colors[1] = 0.816F;
+				this.colors[2] = 0.0F;
 			} else if (t.getColor() == EnumTeamColor.ORANGE) {
-				float[] colors = {1.0F, 0.58F, 0.0F};
-				return colors;
+				this.colors[0] = 1.0F;
+				this.colors[1] = 0.58F;
+				this.colors[2] = 0.0F;
 			} else if (t.getColor() == EnumTeamColor.RED) {
-				float[] colors = {0.918F, 0.294F, 0.294F};
-				return colors;
+				this.colors[0] = 0.918F;
+				this.colors[1] = 0.294F;
+				this.colors[2] = 0.294F;
 			} else if (t.getColor() == EnumTeamColor.PINK) {
-				float[] colors = {0.91F, 0.533F, 0.788F};
-				return colors;
+				this.colors[0] = 0.91F;
+				this.colors[1] = 0.533F;
+				this.colors[2] = 0.788F;
 			} else if (t.getColor() == EnumTeamColor.MAGENTA) {
-				float[] colors = {1.0F, 0.0F, 0.498F};
-				return colors;
+				this.colors[0] = 1.0F;
+				this.colors[1] = 0.0F;
+				this.colors[2] = 0.498F;
 			} else if (t.getColor() == EnumTeamColor.PURPLE) {
-				float[] colors = {0.702F, 0.259F, 1.0F};
-				return colors;
+				this.colors[0] = 0.702F;
+				this.colors[1] = 0.259F;
+				this.colors[2] = 1.0F;
 			} else if (t.getColor() == EnumTeamColor.GRAY) {
-				float[] colors = {0.753F, 0.753F, 0.753F};
-				return colors;
+				this.colors[0] = 0.753F;
+				this.colors[1] = 0.753F;
+				this.colors[2] = 0.753F;
 			} else {
-				float[] colors = {teac.red / 255F, teac.green / 255F, teac.blue / 255F};
-				return colors;
-				//red = t.getColor().getColor().redi();
-				//green = t.getColor().getColor().greeni();
-				//blue = t.getColor().getColor().bluei();
+				this.colors[0] = this.teac.red / 255F;
+				this.colors[1] = this.teac.green / 255F;
+				this.colors[2] = this.teac.blue / 255F;
 			}
+			sendColorPacket(this.teac);
+			return this.colors;
 		}
-		float[] colors = {1.0F, 1.0F, 1.0F};
-		return colors;
+		return this.colors;
 	}
 
 	@Override

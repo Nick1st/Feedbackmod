@@ -55,6 +55,10 @@ public class TileEntityAirdropCrate extends TileEntityLockableLoot implements IT
 	private List<TileEntityAirdropCrate.BeamSegment> segmentSize = Lists.newArrayList();
 	private int levels = 0;
 	private int beamHeight = -1;
+	public float[] afloat;
+	public IBlockState blockstate;
+	public BlockPos blockpos;
+	public Block block;
 
 	@Override
 	@Nullable
@@ -245,50 +249,49 @@ public class TileEntityAirdropCrate extends TileEntityLockableLoot implements IT
 		int x = this.pos.getX();
 		int y = this.pos.getY();
 		int z = this.pos.getZ();
-		BlockPos blockpos;
 		if (this.beamHeight < y) {
-			blockpos = this.pos;
+			this.blockpos = this.pos;
 			this.segmentSize = Lists.newArrayList();
-			this.beamHeight = blockpos.getY() - 1;
+			this.beamHeight = this.blockpos.getY() - 1;
 		} else {
-			blockpos = new BlockPos(x, this.beamHeight + 1, z);
+			this.blockpos = new BlockPos(x, this.beamHeight + 1, z);
 		}
 		TileEntityAirdropCrate.BeamSegment beaconBeamSegment = this.segmentSize.isEmpty() ? null : this.segmentSize.get(this.segmentSize.size()
 				- 1);
 		int l = this.world != null ? this.world.getHeight(x, z) : 0;
-		for (int i1 = 0; i1 < 10 && blockpos.getY() <= l; ++i1) {
-			IBlockState blockstate = this.world.getBlockState(blockpos);
-			Block block = blockstate.getBlock();
+		for (int i1 = 0; i1 < 10 && this.blockpos.getY() <= l; ++i1) {
+			this.blockstate = this.world.getBlockState(this.blockpos);
+			this.block = this.blockstate.getBlock();
 			////float[] afloat = blockstate.getBeaconColorMultiplier(this.world, blockpos, getPos());
 			//float[] afloat = {1.0F, 0.725F, 0.059F};
 			//
 			//float[] afloat = {this.red / 255F, this.green / 255F, this.blue / 255F};
 			//
-			float[] afloat = PackUtilBlocks.airdrop_crate_advanced.getBeamColor(world, blockpos);
-			if (afloat != null) {
+			this.afloat = PackUtilBlocks.airdrop_crate_advanced.getBeamColor(this.world, this.blockpos);
+			if (this.afloat != null) {
 				if (this.segmentSize.size() <= 1) {
 					//System.out.println(afloat);
-					beaconBeamSegment = new TileEntityAirdropCrate.BeamSegment(afloat);
+					beaconBeamSegment = new TileEntityAirdropCrate.BeamSegment(this.afloat);
 					this.segmentSize.add(beaconBeamSegment);
 				} else if (beaconBeamSegment != null) {
-					if (Arrays.equals(afloat, beaconBeamSegment.colors)) {
+					if (Arrays.equals(this.afloat, beaconBeamSegment.colors)) {
 						beaconBeamSegment.incrementHeight();
 					} else {
 						beaconBeamSegment = new TileEntityAirdropCrate.BeamSegment(new float[] {(beaconBeamSegment.colors[0]
-								+ afloat[0]) / 2.0F, (beaconBeamSegment.colors[1] + afloat[1])
-										/ 2.0F, (beaconBeamSegment.colors[2] + afloat[2]) / 2.0F});
+								+ this.afloat[0]) / 2.0F, (beaconBeamSegment.colors[1] + this.afloat[1])
+										/ 2.0F, (beaconBeamSegment.colors[2] + this.afloat[2]) / 2.0F});
 						this.segmentSize.add(beaconBeamSegment);
 					}
 				}
 			} else {
-				if (beaconBeamSegment == null || blockstate.getLightOpacity(this.world, blockpos) >= 15 && block != Blocks.BEDROCK) {
+				if (beaconBeamSegment == null || blockstate.getLightOpacity(this.world, this.blockpos) >= 15 && this.block != Blocks.BEDROCK) {
 					this.segmentSize.clear();
 					this.beamHeight = l;
 					break;
 				}
 				beaconBeamSegment.incrementHeight();
 			}
-			blockpos = blockpos.up();
+			this.blockpos = this.blockpos.up();
 			++this.beamHeight;
 		}
 		//int j1 = this.levels;
