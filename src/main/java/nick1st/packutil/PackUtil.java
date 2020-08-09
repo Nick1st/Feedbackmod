@@ -43,9 +43,12 @@ public class PackUtil {
 	//
 	public static final int GUI_AIRDROP_CRATE = 2;
 	public static File config;
-	//public static GUIHandler guihandler;
-	//public static CommonProxy guihandler;
 
+	/**
+	 * Gets the Mod Instance
+	 *
+	 * @deprecated use {@link #INSTANCE} directly instead.
+	 */
 	@Deprecated
 	public static PackUtil getInstance() {
 		return INSTANCE;
@@ -64,11 +67,11 @@ public class PackUtil {
 		PROXY.preInit();
 		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, PROXY);
 		//
-		//PackUtilConfig.registerConfig(event);
-		//NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, guihandler);
-		//MinecraftForge.EVENT_BUS.register(ModItems.class);
-		//MinecraftForge.EVENT_BUS.register(PackUtilBlocks.class);
-		//EntityRegistry.registerModEntity(getEntityResource("parachute_drop"), EntityParachute.class, "parachute_drop", 1, PackUtil.INSTANCE, 120, 1, true);
+		//OLD: PackUtilConfig.registerConfig(event);
+		//OLD: NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, guihandler);
+		//OLD: MinecraftForge.EVENT_BUS.register(ModItems.class);
+		//OLD: MinecraftForge.EVENT_BUS.register(PackUtilBlocks.class);
+		//OLD: EntityRegistry.registerModEntity(getEntityResource("parachute_drop"), EntityParachute.class, "parachute_drop", 1, PackUtil.INSTANCE, 120, 1, true);
 		PROXY.registerRenderers();
 		PROXY.registerItemModels();
 		PROXY.registerGui();
@@ -78,8 +81,7 @@ public class PackUtil {
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		int messageId = 0;
-		PACKET_HANDLER.registerMessage(MessageBeamColorSync.Handler.class, MessageBeamColorSync.class, messageId++, Side.CLIENT);
+		PACKET_HANDLER.registerMessage(MessageBeamColorSync.Handler.class, MessageBeamColorSync.class, 1, Side.CLIENT);
 		MinecraftForge.EVENT_BUS.register(PackUtilBlocks.class);
 		MinecraftForge.EVENT_BUS.register(ModItems.class);
 		EntityRegistry.registerModEntity(new ResourceLocation(PackUtil.MOD_ID, "parachute_drop"), EntityParachute.class, "parachute_drop", 1, PackUtil.INSTANCE, 120, 1, true);
@@ -92,6 +94,14 @@ public class PackUtil {
 		//Unused at the moment
 	}
 
+	/**
+	 * Gets the ResourceLocation of an Entity
+	 *
+	 * @deprecated use
+	 *             {@link net.minecraft.util.ResourceLocation#ResourceLocation(String, String)}
+	 *             directly instead.
+	 */
+	@Deprecated
 	private static ResourceLocation getEntityResource(String entityName) {
 		return new ResourceLocation(PackUtil.MOD_ID, entityName);
 	}
