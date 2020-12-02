@@ -1,0 +1,30 @@
+modLoader="javafml"
+
+loaderVersion="[35,)"
+license="LGPL-2.1 License"
+issueTrackerURL="https://github.com/Nick1st/PackUtil/issues"
+
+[[mods]]
+	modId="packutil"
+	version="${file.jarVersion}"
+	displayName="PackUtil"
+	updateJSONURL="https://github.com/Nick1st/PackUtil/tree/dev-1.16.4/update.json"
+	displayURL="https://www.curseforge.com/minecraft/mc-mods/packutil"
+	logoFile="packutil.png"
+	credits="Thanks to my friends for testing the alpha builds!"
+	authors="Nick1st"
+	description='''PackUtil provides all missing functions needed in my Modpacks.'''
+	
+	[[dependencies.packutil]]
+    	modId="forge"
+    	mandatory=true
+    	versionRange="[35,)"
+    	ordering="NONE"
+    	side="BOTH"
+
+	[[dependencies.examplemod]]
+    	modId="minecraft"
+    	mandatory=true
+    	versionRange="[1.16.4,1.17)"
+    	ordering="NONE"
+    	side="BOTH"
