@@ -1,0 +1,10 @@
+{
+	"homepage": "https://www.curseforge.com/minecraft/mc-mods/packutil",
+	"promos": {
+		"1.16.4-latest": "0.0.1",
+		"1.16.4-recommended": "0.0.1"
+	},
+	"1.15.2": {
+		"0.0.1": "Initial 1.16.4 Build"
+	}
+}
