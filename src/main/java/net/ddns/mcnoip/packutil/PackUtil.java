@@ -1,8 +1,6 @@
 package net.ddns.mcnoip.packutil;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import net.ddns.mcnoip.packutil.client.gui.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -15,12 +13,11 @@ import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-// The value here should match an entry in the META-INF/mods.toml file
+/**
+ * Main class for Packutil
+ */
 @Mod("packutil")
 public class PackUtil {
-    // static log4j logger.
-    @SuppressWarnings("unused")
-    private static final Logger LOGGER = LogManager.getLogger("PackUtil");
 
     public PackUtil() {
 	// Register setup method for modloading
@@ -29,10 +26,8 @@ public class PackUtil {
 	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
 	// Register processIMC method for modloading
 	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-	// Register doClientStuff method for modloading
-	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 
-	// Register ourselves for server and other game events we are interested in
+	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
 	MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -41,9 +36,12 @@ public class PackUtil {
 
     }
 
+    /**
+     * Register GuiHandler
+     */
     private void doClientStuff(final FMLClientSetupEvent event) {
-	// client stuff
-
+	PackUtilLogger.info("");
+	MinecraftForge.EVENT_BUS.register(GuiHandler.class);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
