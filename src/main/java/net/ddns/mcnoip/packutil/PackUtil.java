@@ -33,7 +33,14 @@ public class PackUtil {
 	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
 
 	FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+	PackUtilLogger.info("Starting to load PackUtil configs, a full list can be seen in the debug log!");
 	ModLoadingContext.get().registerConfig(Type.CLIENT, CLIENT_CONFIG.getSpec());
+	PackUtilLogger.debug("Loading client config:");
+	PackUtilLogger.debug("Module IngameMenuScreen is aktiv: " + PackUtilConfigClient.enableIngameMenuScreen());
+	PackUtilLogger.debug("		Report Url: " + PackUtilConfigClient.reportUrl());
+	PackUtilLogger.info("Loaded PackUtil configs!");
+
 	MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -46,9 +53,6 @@ public class PackUtil {
      * Register GuiHandler
      */
     private void doClientStuff(final FMLClientSetupEvent event) {
-	PackUtilLogger.info("Registering GuiHandler");
-	PackUtilLogger.info("Registering GuiHandler");
-	PackUtilLogger.info("Registering GuiHandler");
 	PackUtilLogger.info("Registering GuiHandler");
 	MinecraftForge.EVENT_BUS.register(GuiHandler.class);
     }
