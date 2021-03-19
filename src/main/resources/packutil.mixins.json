@@ -4,7 +4,8 @@
 	"compatibilityLevel": "JAVA_8",
 	"refmap": "modid.refmap.json",
 	"mixins": [
-		"InfinityEnchantmentMixin"
+		"InfinityEnchantmentMixin",
+		"RepairContainerMixin"
 	],
 	"minVersion": "0.8"
 }

@@ -2,6 +2,7 @@ package net.ddns.mcnoip.packutil;
 
 import net.ddns.mcnoip.packutil.client.gui.GuiHandler;
 import net.ddns.mcnoip.packutil.config.PackUtilConfigClient;
+import net.ddns.mcnoip.packutil.config.PackUtilConfigCommon;
 import net.ddns.mcnoip.packutil.event.AnvilEvent;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class PackUtil {
 
     public static final PackUtilConfigClient CLIENT_CONFIG = new PackUtilConfigClient();
+    public static final PackUtilConfigCommon COMMON_CONFIG = new PackUtilConfigCommon();
 
     public PackUtil() {
 	// Register setup method for modloading
@@ -39,6 +41,7 @@ public class PackUtil {
 
 	PackUtilLogger.info("Starting to load PackUtil configs, a full list can be seen in the debug log!");
 	ModLoadingContext.get().registerConfig(Type.CLIENT, CLIENT_CONFIG.getSpec());
+	ModLoadingContext.get().registerConfig(Type.COMMON, COMMON_CONFIG.getSpec());
 	PackUtilLogger.debug("Loading client config:");
 	PackUtilLogger.debug("Module IngameMenuScreen is aktiv: " + PackUtilConfigClient.enableIngameMenuScreen());
 	PackUtilLogger.debug("		Report Url: " + PackUtilConfigClient.reportUrl());
