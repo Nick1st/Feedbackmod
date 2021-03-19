@@ -17,4 +17,11 @@ public class RepairContainerMixin {
     private int setCap(int input) {
 	return PackUtilConfigCommon.levelCap();
     }
+
+    /*
+     * @ModifyConstant(method = "getMaximumCost", constant = @Constant(intValue =
+     * 40), slice = @Slice(from = @At(value = "INVOKE", target =
+     * "Lnet/minecraft/util/IntReferenceHolder;get()I", ordinal = 1))) private int
+     * setVisibleCap(int input) { return PackUtilConfigCommon.levelCap(); }
+     */
 }
