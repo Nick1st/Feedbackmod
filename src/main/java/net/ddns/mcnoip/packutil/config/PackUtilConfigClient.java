@@ -10,6 +10,9 @@ public class PackUtilConfigClient {
     private static ForgeConfigSpec.BooleanValue ingameMenuScreen;
     private static ForgeConfigSpec.ConfigValue<String> reportUrl;
 
+    // Welcome message
+    private static ForgeConfigSpec.ConfigValue<String> welcome;
+
     public PackUtilConfigClient() {
 	final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
 
@@ -20,6 +23,14 @@ public class PackUtilConfigClient {
 		.define("reportURL", "");
 
 	builder.pop();
+
+	// Welcome Message
+	builder.comment("Welcome Message to be displayed. If empty no message will be displayed")
+		.push("Welcome Message");
+	welcome = builder.comment("Welcome Message to be shown").define("welcomeMessage", "");
+
+	builder.pop();
+
 	this.spec = builder.build();
     }
 
@@ -30,6 +41,11 @@ public class PackUtilConfigClient {
 
     public static String reportUrl() {
 	return reportUrl.get();
+    }
+
+    // Welcome Message
+    public static String welcomeMessage() {
+	return welcome.get();
     }
 
     public ForgeConfigSpec getSpec() {

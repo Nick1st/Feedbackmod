@@ -24,4 +24,9 @@ public class PackUtilLogger {
     public static void error(String message, Object... args) {
 	LOGGER.error(message, args);
     }
+
+    public static void fatal(String message, Object... args) {
+	LOGGER.fatal(message, args);
+    }
+
 }

@@ -4,6 +4,7 @@ import net.ddns.mcnoip.packutil.client.gui.GuiHandler;
 import net.ddns.mcnoip.packutil.config.PackUtilConfigClient;
 import net.ddns.mcnoip.packutil.config.PackUtilConfigCommon;
 import net.ddns.mcnoip.packutil.event.AnvilEvent;
+import net.ddns.mcnoip.packutil.event.SpawnEvent;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -57,6 +58,7 @@ public class PackUtil {
 
     private void loadComplete(final FMLLoadCompleteEvent event) {
 	MinecraftForge.EVENT_BUS.register(new AnvilEvent());
+	MinecraftForge.EVENT_BUS.register(new SpawnEvent());
     }
 
     /**
